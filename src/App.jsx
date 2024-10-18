@@ -2,33 +2,35 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [result,setResult] = useState("")
+  const [result, setResult] = useState('');
 
-  const handleClick = e => setResult(result.concat(e.target.id))
+  const handleClick = (e) => setResult(result.concat(e.target.id));
 
-  const clear = () => setResult("")
+  const clear = () => setResult('');
 
-  const deleteEl = () => setResult(result.slice((0,-1)))
+  const deleteEl = () => setResult(result.slice(0, -1));
 
   const calculate = () => {
-    try{
-      setResult(eval(result).toString())
-    }catch(error){
-      setResult("Error")
+    try {
+      setResult(eval(result).toString());
+    } catch (error) {
+      setResult('Error');
     }
-  }
+  };
 
   return (
     <div className="calculator">
       <input type="text" value={result} disabled />
       <div className="buttons">
-        <button className="operator" onClick={clear}>
+        <button className="operator btn-ac" onClick={clear}>
           AC
         </button>
-        <button className="operator" onClick={deleteEl}>
+        <button className="operator btn-del" onClick={deleteEl}>
           DEL
         </button>
-        <button id="/" className="operator" onClick={handleClick}></button>
+        <button id="/" className="operator btn-div" onClick={handleClick}>
+          /
+        </button>
 
         <button id="7" className="number" onClick={handleClick}>
           7
@@ -75,7 +77,7 @@ function App() {
         <button id="." className="number" onClick={handleClick}>
           .
         </button>
-        <button id="-" className="operator" onClick={handleClick}>
+        <button id="=" className="operator btn-equal" onClick={calculate}>
           =
         </button>
       </div>
